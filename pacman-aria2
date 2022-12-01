@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FILENAME=$(echo $2 | sed -n 's/^\(.*\/\)*\(.*\)/\2/p')
+DIRECTORY=$(echo $2 | sed -n 's/^\(.*\/\)*\(.*\)/\1/p' | rev | cut -c2- | rev)
+
+echo Downloading "$1"...
+/usr/bin/aria2c --conf-path=/etc/pacman-aria2.conf "$1" -d "$DIRECTORY" -o "$FILENAME"
+echo ""
